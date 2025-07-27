@@ -4,7 +4,6 @@ import { RegexPattern, RegexMatches } from "./regex";
 export type RegexAppState = {
   regexList: RegexPattern[];
   selectedPattern: string | null;
-  mode: "edit" | "approval";
   textContent: string;
   extractedTerms: RegexMatches;
 };
@@ -19,6 +18,5 @@ export type ActionWithPayload =
     }
   | { type: typeof ACTIONS.DELETE_REGEX; payload: string }
   | { type: typeof ACTIONS.APPROVE_REGEX; payload: string }
-  | { type: typeof ACTIONS.SET_MODE; payload: "edit" | "approval" }
   | { type: typeof ACTIONS.SELECT_PATTERN; payload: string | null }
   | { type: typeof ACTIONS.SET_TEXT; payload: string };

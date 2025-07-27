@@ -1,3 +1,25 @@
 .controlPanel {
   border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modeToggle {
+  display: flex;
+  gap: 1rem;
+}
+
+.modeToggle button {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  background: #f0f0f0;
+  cursor: pointer;
+}
+
+.modeToggle .active {
+  background: #0070f3;
+  color: white;
+  border-color: #0070f3;
 }
