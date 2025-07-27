@@ -1,0 +1,1 @@
+export { extractTermsFromAll } from "./extractTermsFromAll";
