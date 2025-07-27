@@ -17,6 +17,6 @@ export type ActionWithPayload =
       payload: { oldPattern: string; newPattern: RegexPattern };
     }
   | { type: typeof ACTIONS.DELETE_REGEX; payload: string }
-  | { type: typeof ACTIONS.APPROVE_REGEX; payload: string }
+  | { type: typeof ACTIONS.APPROVE_REGEX; payload: string | null }
   | { type: typeof ACTIONS.SELECT_PATTERN; payload: string | null }
   | { type: typeof ACTIONS.SET_TEXT; payload: string };

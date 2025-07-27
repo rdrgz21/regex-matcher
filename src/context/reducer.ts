@@ -25,7 +25,7 @@ export const reducer = (
     }
     case ACTIONS.DELETE_REGEX: {
       const updatedList = state.regexList.filter(
-        (r) => r.pattern !== action.payload
+        (regex) => regex.pattern !== action.payload
       );
       return {
         ...state,
@@ -33,12 +33,20 @@ export const reducer = (
       };
     }
     case ACTIONS.APPROVE_REGEX: {
-      // TODO: Implement
-      return state;
+      return {
+        ...state,
+        regexList: state.regexList.map((regex) =>
+          regex.pattern === action.payload
+            ? { ...regex, isApproved: true }
+            : regex
+        ),
+      };
     }
     case ACTIONS.SELECT_PATTERN: {
-      // TODO: Implement
-      return state;
+      return {
+        ...state,
+        selectedPattern: action.payload,
+      };
     }
     case ACTIONS.SET_TEXT: {
       return {
