@@ -1,5 +1,6 @@
 import { ACTIONS } from "@/constants/actions";
 import { ActionWithPayload, RegexAppState } from "@/types/context";
+import { extractTermsFromAll } from "@/utils/extractTermsFromAll";
 
 export const reducer = (
   state: RegexAppState,
@@ -13,14 +14,15 @@ export const reducer = (
       };
     }
     case ACTIONS.EDIT_REGEX: {
-      // TODO: Implement
+      const updatedList = state.regexList.map((regex) =>
+        regex.pattern === action.payload.oldPattern
+          ? action.payload.newPattern
+          : regex
+      );
       return {
         ...state,
-        regexList: state.regexList.map((regex) =>
-          regex.pattern === action.payload.oldPattern
-            ? action.payload.newPattern
-            : regex
-        ),
+        regexList: updatedList,
+        extractedTerms: extractTermsFromAll(updatedList, state.textContent),
       };
     }
     case ACTIONS.DELETE_REGEX: {
@@ -30,9 +32,15 @@ export const reducer = (
       return {
         ...state,
         regexList: updatedList,
+        extractedTerms: extractTermsFromAll(updatedList, state.textContent),
       };
     }
     case ACTIONS.APPROVE_REGEX: {
+      const updatedList = state.regexList.map((regex) =>
+        regex.pattern === action.payload
+          ? { ...regex, isApproved: true }
+          : regex
+      );
       return {
         ...state,
         regexList: state.regexList.map((regex) =>
@@ -40,6 +48,7 @@ export const reducer = (
             ? { ...regex, isApproved: true }
             : regex
         ),
+        extractedTerms: extractTermsFromAll(updatedList, state.textContent),
       };
     }
     case ACTIONS.SELECT_PATTERN: {

@@ -33,6 +33,7 @@
 }
 
 .allMatches {
+  border: 1px solid fuchsia;
   margin-top: 2rem;
 }
 

@@ -4,6 +4,8 @@ import { useRegexContext } from "@/hooks/useRegexContext";
 export const ApprovalModeContent = () => {
   const { state, selectPattern, approvePattern } = useRegexContext();
 
+  console.log(state.extractedTerms, "extractedTerms");
+
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     selectPattern(value);
@@ -25,9 +27,9 @@ export const ApprovalModeContent = () => {
           <optgroup label="⌛ Unapproved ⌛">
             {state.regexList
               .filter((r) => !r.isApproved)
-              .map((pattern) => (
-                <option key={pattern.pattern} value={pattern.pattern}>
-                  {pattern.pattern}
+              .map((regex) => (
+                <option key={regex.pattern} value={regex.pattern}>
+                  {`${regex.label}: ${regex.pattern}`}
                 </option>
               ))}
           </optgroup>
@@ -35,9 +37,9 @@ export const ApprovalModeContent = () => {
           <optgroup label="✅ Approved ✅">
             {state.regexList
               .filter((r) => r.isApproved)
-              .map((pattern) => (
-                <option key={pattern.pattern} value={pattern.pattern}>
-                  {pattern.pattern}
+              .map((regex) => (
+                <option key={regex.pattern} value={regex.pattern}>
+                  {`${regex.label}: ${regex.pattern}`}
                 </option>
               ))}
           </optgroup>
@@ -49,6 +51,27 @@ export const ApprovalModeContent = () => {
       >
         Approve
       </button>
+
+      <div className={styles.allMatches}>
+        <h3>All Matches:</h3>
+        <ul>
+          {Object.entries(state.extractedTerms).map(([pattern, matches]) => {
+            const regexObj = state.regexList.find((r) => r.pattern === pattern);
+            const label = regexObj?.label || "Untitled";
+
+            return (
+              <div key={pattern}>
+                <strong>{label}</strong>
+                <ul>
+                  {matches.map((match, idx) => (
+                    <li key={idx}>{match}</li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 };
