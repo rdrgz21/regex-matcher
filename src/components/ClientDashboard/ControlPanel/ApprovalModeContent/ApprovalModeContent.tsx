@@ -1,3 +1,4 @@
+import { getMatchesForPattern } from "@/utils/getMatchesForPattern/getMatchesForPattern";
 import styles from "./ApprovalModeContent.module.css";
 import { useRegexContext } from "@/hooks/useRegexContext";
 
@@ -52,8 +53,25 @@ export const ApprovalModeContent = () => {
         Approve
       </button>
 
+      {state.selectedPattern && (
+        <div className={styles.selectedMatches}>
+          <h3>Selected Pattern Matches:</h3>
+          <strong>
+            {state.regexList.find((r) => r.pattern === state.selectedPattern)
+              ?.label ?? "Untitled"}
+          </strong>
+          <ul>
+            {getMatchesForPattern(state.selectedPattern, state.textContent).map(
+              (match, idx) => (
+                <li key={idx}>{match}</li>
+              )
+            )}
+          </ul>
+        </div>
+      )}
+
       <div className={styles.allMatches}>
-        <h3>All Matches:</h3>
+        <h3>Approved Matches:</h3>
         <ul>
           {Object.entries(state.extractedTerms).map(([pattern, matches]) => {
             const regexObj = state.regexList.find((r) => r.pattern === pattern);
