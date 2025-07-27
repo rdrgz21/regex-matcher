@@ -57,7 +57,7 @@ export const reducer = (
         selectedPattern: action.payload,
       };
     }
-    case "SET_TEXT": {
+    case ACTIONS.SET_TEXT: {
       return {
         ...state,
         textContent: action.payload,
