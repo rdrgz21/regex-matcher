@@ -33,18 +33,19 @@ export const EditModeContent = () => {
       <div className={styles.newPatternInputWrapper}>
         <input
           type="text"
-          placeholder="Enter new regex pattern"
-          className={styles.input}
-          value={newPattern}
-          onChange={(e) => setNewPattern(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter a description"
+          placeholder="Description"
           className={styles.input}
           value={newLabel}
           onChange={(e) => setNewLabel(e.target.value)}
         />
+        <input
+          type="text"
+          placeholder="New regex pattern"
+          className={styles.input}
+          value={newPattern}
+          onChange={(e) => setNewPattern(e.target.value)}
+        />
+
         <button className={styles.addButton} onClick={handleAdd}>
           Add
         </button>
