@@ -4,6 +4,7 @@ import styles from "./PatternList.module.css";
 import { RegexPattern } from "@/types/regex";
 import { useRegexContext } from "@/hooks/useRegexContext";
 import { useState } from "react";
+import { validateAndDispatch } from "@/utils/validateAndDispatch/validateAndDispatch";
 
 interface PatternListProps {
   patterns: RegexPattern[];
@@ -30,11 +31,18 @@ export const PatternList = ({ patterns, title }: PatternListProps) => {
 
   const saveEdit = () => {
     if (editingPattern) {
-      editRegex(editingPattern, {
-        label: editLabel,
-        pattern: editPattern,
-        isApproved: false,
-      });
+      validateAndDispatch(
+        editPattern,
+        patterns,
+        () => {
+          editRegex(editingPattern, {
+            label: editLabel,
+            pattern: editPattern,
+            isApproved: false,
+          });
+        },
+        editingPattern
+      );
       cancelEditing();
     }
   };

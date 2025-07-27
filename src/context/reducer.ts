@@ -24,8 +24,13 @@ export const reducer = (
       };
     }
     case ACTIONS.DELETE_REGEX: {
-      // TODO: Implement
-      return state;
+      const updatedList = state.regexList.filter(
+        (r) => r.pattern !== action.payload
+      );
+      return {
+        ...state,
+        regexList: updatedList,
+      };
     }
     case ACTIONS.APPROVE_REGEX: {
       // TODO: Implement

@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./EditModeContent.module.css";
 import { useRegexContext } from "@/hooks/useRegexContext";
 import { PatternList } from "./PatternList";
+import { validateAndDispatch } from "@/utils/validateAndDispatch/validateAndDispatch";
 
 export const EditModeContent = () => {
   const [newLabel, setNewLabel] = useState("");
@@ -10,15 +11,20 @@ export const EditModeContent = () => {
 
   const handleAdd = () => {
     if (!newPattern || !newLabel) return;
-    addRegex({
-      label: newLabel,
-      pattern: newPattern,
-      isApproved: false,
+
+    validateAndDispatch(newPattern, state.regexList, () => {
+      addRegex({
+        label: newLabel,
+        pattern: newPattern,
+        isApproved: false,
+      });
     });
+
     setNewLabel("");
     setNewPattern("");
   };
 
+  // TODO: Add reducer for approved and unapproved patterns
   const approved = state.regexList.filter((r) => r.isApproved);
   const unapproved = state.regexList.filter((r) => !r.isApproved);
 
@@ -51,6 +57,7 @@ export const EditModeContent = () => {
       {unapproved.length > 0 && (
         <PatternList patterns={unapproved} title="Unapproved Patterns" />
       )}
+
       {approved.length > 0 && (
         <PatternList patterns={approved} title="Approved Patterns" />
       )}
