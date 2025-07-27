@@ -1,23 +1,26 @@
 import { useState } from "react";
 import styles from "./EditModeContent.module.css";
 import { useRegexContext } from "@/hooks/useRegexContext";
+import { PatternList } from "./PatternList";
 
 export const EditModeContent = () => {
   const [newLabel, setNewLabel] = useState("");
   const [newPattern, setNewPattern] = useState("");
-  const { addRegex, state } = useRegexContext();
+  const { state, addRegex } = useRegexContext();
 
-  console.log(state, "state");
-
-  const handleAddPattern = () => {
+  const handleAdd = () => {
+    if (!newPattern || !newLabel) return;
     addRegex({
-      label: newPattern,
+      label: newLabel,
       pattern: newPattern,
       isApproved: false,
     });
     setNewLabel("");
     setNewPattern("");
   };
+
+  const approved = state.regexList.filter((r) => r.isApproved);
+  const unapproved = state.regexList.filter((r) => !r.isApproved);
 
   return (
     <div className={styles.editModeContent}>
@@ -36,10 +39,21 @@ export const EditModeContent = () => {
           value={newLabel}
           onChange={(e) => setNewLabel(e.target.value)}
         />
-        <button className={styles.addButton} onClick={handleAddPattern}>
+        <button className={styles.addButton} onClick={handleAdd}>
           Add
         </button>
       </div>
+
+      {state.regexList.length === 0 && (
+        <p className={styles.noPatterns}>No patterns added yet</p>
+      )}
+
+      {unapproved.length > 0 && (
+        <PatternList patterns={unapproved} title="Unapproved Patterns" />
+      )}
+      {approved.length > 0 && (
+        <PatternList patterns={approved} title="Approved Patterns" />
+      )}
     </div>
   );
 };

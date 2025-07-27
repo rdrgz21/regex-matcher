@@ -14,6 +14,8 @@ export const RegexContext = createContext<
       dispatch: React.Dispatch<ActionWithPayload>;
       setText: (text: string) => void;
       addRegex: (pattern: RegexPattern) => void;
+      editRegex: (oldPattern: string, newPattern: RegexPattern) => void;
+      deleteRegex: (pattern: string) => void;
     }
   | undefined
 >(undefined);
@@ -42,6 +44,15 @@ export const RegexProvider = ({ children }: { children: ReactNode }) => {
     },
     addRegex: (pattern: RegexPattern) => {
       dispatch({ type: ACTIONS.ADD_REGEX, payload: pattern });
+    },
+    editRegex: (oldPattern: string, newPattern: RegexPattern) => {
+      dispatch({
+        type: ACTIONS.EDIT_REGEX,
+        payload: { oldPattern, newPattern },
+      });
+    },
+    deleteRegex: (pattern: string) => {
+      dispatch({ type: ACTIONS.DELETE_REGEX, payload: pattern });
     },
   };
 

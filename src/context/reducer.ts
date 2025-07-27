@@ -14,7 +14,14 @@ export const reducer = (
     }
     case ACTIONS.EDIT_REGEX: {
       // TODO: Implement
-      return state;
+      return {
+        ...state,
+        regexList: state.regexList.map((regex) =>
+          regex.pattern === action.payload.oldPattern
+            ? action.payload.newPattern
+            : regex
+        ),
+      };
     }
     case ACTIONS.DELETE_REGEX: {
       // TODO: Implement
