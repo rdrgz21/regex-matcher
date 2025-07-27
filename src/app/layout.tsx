@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { RegexProvider } from "@/context/RegexContext";
 
 export const metadata: Metadata = {
   title: "Regex Matcher",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <RegexProvider>{children}</RegexProvider>
+      </body>
     </html>
   );
 }
