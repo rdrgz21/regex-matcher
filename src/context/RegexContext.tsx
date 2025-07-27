@@ -16,7 +16,7 @@ export const RegexContext = createContext<
       addRegex: (pattern: RegexPattern) => void;
       editRegex: (oldPattern: string, newPattern: RegexPattern) => void;
       deleteRegex: (pattern: string) => void;
-      selectPattern: (pattern: string) => void;
+      selectPattern: (pattern: string | null) => void;
       approvePattern: (pattern: string | null) => void;
     }
   | undefined

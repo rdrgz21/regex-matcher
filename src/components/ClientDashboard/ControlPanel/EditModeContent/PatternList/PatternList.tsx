@@ -48,7 +48,7 @@ export const PatternList = ({ patterns, title }: PatternListProps) => {
   };
 
   return (
-    <div className={styles.section}>
+    <div>
       <h2 className={styles.title}>{title}</h2>
       <ul className={styles.list}>
         {patterns.map((item) => {
@@ -81,25 +81,28 @@ export const PatternList = ({ patterns, title }: PatternListProps) => {
                 </div>
               ) : (
                 <div className={styles.viewRow}>
-                  <div>
+                  <div className={styles.info}>
                     <strong>{item.label}</strong> —{" "}
                     <code className={styles.pattern}>{item.pattern}</code>
+                    {item.isApproved && (
+                      <span className={styles.approved}>✔</span>
+                    )}
                   </div>
-                  {item.isApproved && (
-                    <span className={styles.approved}>✔</span>
-                  )}
-                  <button
-                    onClick={() => startEditing(item)}
-                    className={styles.editButton}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => deleteRegex(item.pattern)}
-                    className={styles.deleteButton}
-                  >
-                    Delete
-                  </button>
+
+                  <div className={styles.buttonGroup}>
+                    <button
+                      onClick={() => startEditing(item)}
+                      className={styles.editButton}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => deleteRegex(item.pattern)}
+                      className={styles.deleteButton}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               )}
             </li>
