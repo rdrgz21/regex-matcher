@@ -57,10 +57,11 @@ export const reducer = (
         selectedPattern: action.payload,
       };
     }
-    case ACTIONS.SET_TEXT: {
+    case "SET_TEXT": {
       return {
         ...state,
         textContent: action.payload,
+        extractedTerms: extractTermsFromAll(state.regexList, action.payload),
       };
     }
     default:
