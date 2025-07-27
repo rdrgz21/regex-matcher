@@ -1,4 +1,4 @@
-export const ACTIONS: Record<string, string> = {
+export const ACTIONS = {
   ADD_REGEX: "ADD_REGEX",
   EDIT_REGEX: "EDIT_REGEX",
   DELETE_REGEX: "DELETE_REGEX",

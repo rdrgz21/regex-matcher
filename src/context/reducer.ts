@@ -31,8 +31,10 @@ export const reducer = (
       return state;
     }
     case ACTIONS.SET_TEXT: {
-      // TODO: Implement
-      return state;
+      return {
+        ...state,
+        textContent: action.payload,
+      };
     }
     default:
       return state;
