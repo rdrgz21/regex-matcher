@@ -27,12 +27,17 @@
   cursor: pointer;
 }
 
+.approveButton:disabled {
+  background-color: #5a5a5a;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 .selectedMatches {
   margin-top: 1rem;
 }
 
 .allMatches {
-  border: 1px solid fuchsia;
   margin-top: 2rem;
 }
 

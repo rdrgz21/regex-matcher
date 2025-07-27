@@ -1,16 +1,14 @@
 .editModeContent {
-  border: 1px solid green;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .newPatternInputWrapper {
   display: flex;
   gap: 1rem;
   width: 100%;
-  border: 1px solid red;
 }
 
 .input {

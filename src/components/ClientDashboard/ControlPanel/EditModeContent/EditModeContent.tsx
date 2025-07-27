@@ -52,7 +52,7 @@ export const EditModeContent = () => {
       </div>
 
       {state.regexList.length === 0 && (
-        <p className={styles.noPatterns}>No patterns added yet</p>
+        <p className={styles.noPatterns}>No patterns added yet!</p>
       )}
 
       {unapproved.length > 0 && (

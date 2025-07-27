@@ -5,6 +5,7 @@
   gap: 1rem;
   flex-direction: column;
   padding: 1rem;
+  background-color: #f0f0f0;
 }
 
 @media (max-width: 768px) {

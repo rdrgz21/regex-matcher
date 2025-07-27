@@ -5,7 +5,10 @@ import { useRegexContext } from "@/hooks/useRegexContext";
 export const ApprovalModeContent = () => {
   const { state, selectPattern, approvePattern } = useRegexContext();
 
-  console.log(state.extractedTerms, "extractedTerms");
+  const selectedRegex = state.regexList.find(
+    (r) => r.pattern === state.selectedPattern
+  );
+  const isAlreadyApproved = selectedRegex?.isApproved ?? false;
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
@@ -48,6 +51,14 @@ export const ApprovalModeContent = () => {
       </label>
       <button
         className={styles.approveButton}
+        disabled={!state.selectedPattern || isAlreadyApproved}
+        title={
+          !state.selectedPattern
+            ? "No pattern selected"
+            : isAlreadyApproved
+            ? "Pattern already approved"
+            : "Approve this pattern"
+        }
         onClick={() => approvePattern(state.selectedPattern ?? null)}
       >
         Approve
