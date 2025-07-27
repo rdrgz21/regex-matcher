@@ -1,15 +1,14 @@
 .main {
-  border: 1px solid red;
   margin: 0 auto;
   height: 100vh;
   display: flex;
+  gap: 1rem;
   flex-direction: column;
   padding: 1rem;
 }
 
 @media (max-width: 768px) {
   .main {
-    border: 1px solid fuchsia;
     height: 100%;
   }
 }
