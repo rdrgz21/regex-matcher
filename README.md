@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🧪 Regex Matcher
+A lightweight, modern web app for creating, testing, and approving regex patterns against dynamic input text. Built with Next.js, React Context, and TypeScript.
 
-## Getting Started
+✨ Features
+🔍 Regex Previewing – Match patterns against text content in real-time.
 
-First, run the development server:
+📝 Create, Edit & Delete custom regex patterns.
 
-```bash
+✅ Approval Workflow – Approve regex patterns for extraction.
+
+📄 Match Display – View extracted terms grouped by pattern.
+
+💾 Persistence – Local state saved with localStorage.
+
+🎨 Modern UI – Clean, minimal interface using CSS Modules.
+
+🧪 Test Coverage – Unit tested with Vitest and React Testing Library.
+
+🚀 Getting Started
+
+1. Clone the repo
+   bash
+   Copy
+   Edit
+   git clone https://github.com/your-username/regex-matcher.git
+   cd regex-matcher
+2. Install dependencies
+   bash
+   Copy
+   Edit
+   npm install
+
+# or
+
+yarn install 3. Run locally
+bash
+Copy
+Edit
 npm run dev
+
 # or
+
 yarn dev
+App will be available at http://localhost:3000
+
+🧪 Running Tests
+bash
+Copy
+Edit
+npm run test
+
 # or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+yarn test
+Includes unit tests for reducer logic, context, and UI components using:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Vitest
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+@testing-library/react
 
-## Learn More
+🏗️ Tech Stack
+Next.js
 
-To learn more about Next.js, take a look at the following resources:
+React
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+TypeScript
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+React Context + useReducer
 
-## Deploy on Vercel
+CSS Modules
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Vitest
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+React Testing Library
+
+📁 Project Structure
+cpp
+Copy
+Edit
+src/
+├── components/ // UI components
+├── context/ // Regex context & reducer
+├── constants/ // Action types
+├── hooks/ // Custom hooks
+├── pages/ // Next.js pages
+├── styles/ // CSS Modules
+├── types/ // TypeScript types
+├── utils/ // Utility functions (e.g., match extractor)
+
+📄 License
+MIT © rdrgz21
