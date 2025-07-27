@@ -11,7 +11,7 @@ export type RegexAppState = {
 export type ActionType = (typeof ACTIONS)[keyof typeof ACTIONS];
 
 export type ActionWithPayload =
-  | { type: typeof ACTIONS.ADD_REGEX; payload: string }
+  | { type: typeof ACTIONS.ADD_REGEX; payload: RegexPattern }
   | {
       type: typeof ACTIONS.EDIT_REGEX;
       payload: { id: string; pattern: string };

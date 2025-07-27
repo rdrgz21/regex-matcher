@@ -7,8 +7,10 @@ export const reducer = (
 ): RegexAppState => {
   switch (action.type) {
     case ACTIONS.ADD_REGEX: {
-      // TODO: Implement
-      return state;
+      return {
+        ...state,
+        regexList: [...state.regexList, action.payload],
+      };
     }
     case ACTIONS.EDIT_REGEX: {
       // TODO: Implement
@@ -19,10 +21,6 @@ export const reducer = (
       return state;
     }
     case ACTIONS.APPROVE_REGEX: {
-      // TODO: Implement
-      return state;
-    }
-    case ACTIONS.SET_MODE: {
       // TODO: Implement
       return state;
     }

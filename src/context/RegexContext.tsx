@@ -6,12 +6,14 @@ import { reducer } from "./reducer";
 import { useHasMounted } from "@/hooks/useHasMounted";
 import { initState } from "@/utils/initState";
 import { ACTIONS } from "@/constants/actions";
+import { RegexPattern } from "@/types/regex";
 
 export const RegexContext = createContext<
   | {
       state: RegexAppState;
       dispatch: React.Dispatch<ActionWithPayload>;
       setText: (text: string) => void;
+      addRegex: (pattern: RegexPattern) => void;
     }
   | undefined
 >(undefined);
@@ -19,7 +21,6 @@ export const RegexContext = createContext<
 const initialState: RegexAppState = {
   regexList: [],
   selectedPattern: null,
-  mode: "edit",
   textContent: "",
   extractedTerms: {},
 };
@@ -38,6 +39,9 @@ export const RegexProvider = ({ children }: { children: ReactNode }) => {
   const actions = {
     setText: (text: string) => {
       dispatch({ type: ACTIONS.SET_TEXT, payload: text });
+    },
+    addRegex: (pattern: RegexPattern) => {
+      dispatch({ type: ACTIONS.ADD_REGEX, payload: pattern });
     },
   };
 
